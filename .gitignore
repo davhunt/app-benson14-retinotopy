@@ -26,3 +26,5 @@ docker/required_subjects
 .build
 .template
 .static
+
+neuropythy
