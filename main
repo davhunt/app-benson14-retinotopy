@@ -11,8 +11,9 @@ echo $FREESURFER_LICENSE > license.txt
 
 #time singularity exec -e docker://brainlife/dipy:0.14.2 ./neuropythy/commands/benson14_retinotopy
 
-#cp -R "$output" /usr/local/freesurfer/subjects
-cp -R "$output" /N/u/davhunt/Carbonate/Downloads/freesurfer/subjects
+mkdir -p /usr/local/freesurfer/subjects
+cp -R "$output" /usr/local/freesurfer/subjects
+#cp -R "$output" /N/u/davhunt/Carbonate/Downloads/freesurfer/subjects
 
 #time singularity exec --writable -e docker://brainlife/freesurfer:6.0.0 bash -c "echo $FREESURFER_LICENSE > /usr/local/freesurfer/license.txt && python ./neuropythy/commands/benson14_retinotopy.py output"
 
@@ -20,7 +21,9 @@ cp -R "$output" /N/u/davhunt/Carbonate/Downloads/freesurfer/subjects
 
 #time singularity exec -e docker://nben/neuropythy bash -c "python ./neuropythy/commands/benson14_retinotopy.py output"
 
-time singularity exec -e docker://davhunt/neuropythy:1.0 bash -c "python ./neuropythy/commands/benson14_retinotopy.py output"
+#time singularity exec -e docker://davhunt/neuropythy:1.0 bash -c "python ./neuropythy/commands/benson14_retinotopy.py output"
+
+time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:latest bash -c "python ./neuropythy/commands/benson14_retinotopy.py"
 
 mkdir pRF_output
 cp $SUBJECTS_DIR/output/surf/*benson14* pRF_output && cp $SUBJECTS_DIR/output/mri/*benson14* pRF_output

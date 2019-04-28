@@ -1,14 +1,15 @@
 FROM brainlife/freesurfer:6.0.0
-
-WORKDIR /app
-
-COPY . /app
-
+MAINTAINER David Hunt <davhunt@indiana.edu>
 EXPOSE 5900
-
-RUN ldconfig && RUN mkdir -p /N/u /N/home /N/dc2 /N/soft
+ADD . /tmp/
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
+RUN ldconfig && mkdir -p /N/u /N/home /N/dc2 /N/soft
+
+RUN apt-get update
+
 RUN apt-get remove python3-numpy
-RUN pip3 install --upgrade numpy
+
+RUN apt-get -y install python-pip
+RUN pip install --upgrade numpy
