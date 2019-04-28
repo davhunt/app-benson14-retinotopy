@@ -199,4 +199,4 @@ def main(*args):
         note('   Subject %s finished!' % sub.name)
     return 0
 
-os.chdir(pwd)
+os.chdir(wd)
