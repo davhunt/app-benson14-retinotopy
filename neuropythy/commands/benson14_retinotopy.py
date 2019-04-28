@@ -198,5 +198,3 @@ def main(*args):
                     note('    - Not overwriting existing file: %s' % flnm)
         note('   Subject %s finished!' % sub.name)
     return 0
-
-os.chdir(pwd)
