@@ -31,5 +31,6 @@ cp -R "$output" "$SUBJECTS_DIR"
 
 time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.2 bash -c "python ./neuropythy/commands/benson14_retinotopy.py output"
 
+cd ../..
 mkdir pRF_output
 cp $SUBJECTS_DIR/output/surf/*benson14* pRF_output && cp $SUBJECTS_DIR/output/mri/*benson14* pRF_output
