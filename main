@@ -20,7 +20,7 @@ cp -R "$output" /N/u/davhunt/Carbonate/Downloads/freesurfer/subjects
 
 #time singularity exec -e docker://nben/neuropythy bash -c "python ./neuropythy/commands/benson14_retinotopy.py output"
 
-time singularity exec -e docker://brainlife/freesurfer:6.0.0 bash -c "python ./neuropythy/commands/benson14_retinotopy.py output"
+time singularity exec -e docker://brainlife/dipy:0.14.2 bash -c "python ./neuropythy/commands/benson14_retinotopy.py output"
 
 mkdir pRF_output
 cp $SUBJECTS_DIR/output/surf/*benson14* pRF_output && cp $SUBJECTS_DIR/output/mri/*benson14* pRF_output
