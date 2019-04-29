@@ -14,13 +14,16 @@ echo $FREESURFER_HOME
 echo $SUBJECTS_DIR
 echo $(basename "$output")
 
+
 #time singularity exec --writable -e docker://brainlife/freesurfer:6.0.0 bash -c "echo $FREESURFER_LICENSE > /usr/local/freesurfer/license.txt && SUBJECTS_DIR=$SUBJ_DIR ./calculate_area.py "$tmpdir" "$out2" "$out3""
 
 #time singularity exec -e docker://brainlife/dipy:0.14.2 ./neuropythy/commands/benson14_retinotopy
 
+rm $SUBJECTS_DIR/output
 #mkdir -p /usr/local/freesurfer/subjects
 cp -R "$output" "$SUBJECTS_DIR"
 #cp -R "$output" /N/u/davhunt/Carbonate/Downloads/freesurfer/subjects
+ls $SUBJECTS_DIR
 
 #time singularity exec --writable -e docker://brainlife/freesurfer:6.0.0 bash -c "echo $FREESURFER_LICENSE > /usr/local/freesurfer/license.txt && python ./neuropythy/commands/benson14_retinotopy.py output"
 
