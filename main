@@ -35,7 +35,7 @@ ls $SUBJECTS_DIR
 
 #time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.2 bash -c "python ./neuropythy/commands/benson14_retinotopy.py output"
 
-time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.4 bash -c "SUBJECTS_DIR=/N/u/davhunt/Carbonate/Downloads/freesurfer/subjects && python -m neuropythy benson14_retinotopy $(basename $output)"
+time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.4 bash -c "echo $SUBJECTS_DIR && SUBJECTS_DIR=/N/u/davhunt/Carbonate/Downloads/freesurfer/subjects && python -m neuropythy benson14_retinotopy $(basename $output)"
 
 mkdir pRF_output
 cp $SUBJECTS_DIR/output/surf/*benson14* pRF_output && cp $SUBJECTS_DIR/output/mri/*benson14* pRF_output
