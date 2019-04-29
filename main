@@ -12,6 +12,7 @@ echo $FREESURFER_LICENSE > license.txt
 echo $FREESURFER_LICENSE
 echo $FREESURFER_HOME
 echo $SUBJECTS_DIR
+echo $(basename "$output")
 
 #time singularity exec --writable -e docker://brainlife/freesurfer:6.0.0 bash -c "echo $FREESURFER_LICENSE > /usr/local/freesurfer/license.txt && SUBJECTS_DIR=$SUBJ_DIR ./calculate_area.py "$tmpdir" "$out2" "$out3""
 
@@ -31,7 +32,7 @@ cp -R "$output" "$SUBJECTS_DIR"
 
 #time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.2 bash -c "python ./neuropythy/commands/benson14_retinotopy.py output"
 
-time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.4 bash -c "python -m neuropythy benson14_retinotopy output"
+time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.4 bash -c "python -m neuropythy benson14_retinotopy $(basename $output)"
 
 mkdir pRF_output
 cp $SUBJECTS_DIR/output/surf/*benson14* pRF_output && cp $SUBJECTS_DIR/output/mri/*benson14* pRF_output
