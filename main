@@ -15,7 +15,7 @@ echo $FREESURFER_LICENSE > license.txt
 cp -R "$output" "$SUBJECTS_DIR"
 subj_dir=$SUBJECTS_DIR
 
-time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.4 bash -c "SUBJECTS_DIR=$subj_dir && python -m neuropythy benson14_retinotopy $(basename $output) && for i in $SUBJECTS_DIR/output/mri/*benson14*; do echo $FREESURFER_LICENSE && mri_convert \$i \${i%.*}.nii.gz; done"
+time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.4 bash -c "SUBJECTS_DIR=$subj_dir && python -m neuropythy benson14_retinotopy $(basename $output) && for i in $SUBJECTS_DIR/output/mri/*benson14*; do mri_convert \$i \${i%.*}.nii.gz; done"
 
 #time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.4 bash -c "SUBJECTS_DIR=$subj_dir && python -m neuropythy benson14_retinotopy $(basename $output)"
 
