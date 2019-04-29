@@ -9,6 +9,7 @@ import nibabel.freesurfer.io        as fsio
 import nibabel.freesurfer.mghformat as fsmgh
 import pyrsistent                   as pyr
 import os, warnings, six, pimms
+import sys
 
 from .. import geometry as geo
 from .. import mri      as mri
