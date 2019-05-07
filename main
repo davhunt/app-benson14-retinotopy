@@ -19,3 +19,5 @@ time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt 
 
 mkdir prf
 cp $SUBJECTS_DIR/output/surf/*benson14* prf && cp $SUBJECTS_DIR/output/mri/*benson14* prf
+mv prf/benson14_eccen.nii.gz prf/eccentricity.nii.gz && mv prf/benson14_sigma.nii.gz prf/rfWidth.nii.gz && \
+mv prf/benson14_angle.nii.gz prf/polarAngle.nii.gz && mv prf/benson14_varea.nii.gz prf/varea.nii.gz
