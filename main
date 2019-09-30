@@ -10,10 +10,11 @@ output=$(jq -r .freesurfer config.json)
 [ -z "$FREESURFER_LICENSE" ] && echo "Please set FREESURFER_LICENSE in .bashrc" && exit 1;
 echo $FREESURFER_LICENSE > license.txt
 
-cp -R "$output" "$SUBJECTS_DIR"
-subj_dir=$SUBJECTS_DIR
+#cp -R "$output" "$SUBJECTS_DIR"
+#subj_dir=$SUBJECTS_DIR
+subj_dir=$(dirname $output)
 
-time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.4 bash -c "SUBJECTS_DIR=$subj_dir && python -m neuropythy benson14_retinotopy $(basename $output) && for i in $SUBJECTS_DIR/output/mri/*benson14*; do mri_convert \$i \${i%.*}.nii.gz; done"
+time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.4 bash -c "SUBJECTS_DIR=$subj_dir && python -m neuropythy benson14_retinotopy $(basename $output) -o nifti -v nifti -d $subj_dir"
 
 mkdir prf
 cp $SUBJECTS_DIR/output/surf/*benson14* prf && cp $SUBJECTS_DIR/output/mri/*benson14* prf
