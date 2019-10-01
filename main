@@ -1,36 +1,22 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=4,vmem=120gb,walltime=24:00:00
+#PBS -l nodes=1:ppn=4,vmem=60gb,walltime=24:00:00
 #PBS -N pRF
 #PBS -V
 
-#clean up in case multiple runs
-rm -R $SUBJECTS_DIR/output
+set -e
+set -x
 
 output=$(jq -r .freesurfer config.json)
 [ -z "$FREESURFER_LICENSE" ] && echo "Please set FREESURFER_LICENSE in .bashrc" && exit 1;
 echo $FREESURFER_LICENSE > license.txt
-echo $FREESURFER_LICENSE
-echo $FREESURFER_HOME
-echo $SUBJECTS_DIR
 
-#time singularity exec --writable -e docker://brainlife/freesurfer:6.0.0 bash -c "echo $FREESURFER_LICENSE > /usr/local/freesurfer/license.txt && SUBJECTS_DIR=$SUBJ_DIR ./calculate_area.py "$tmpdir" "$out2" "$out3""
+#cp -R "$output" "$SUBJECTS_DIR"
+#subj_dir=$SUBJECTS_DIR
+subj_dir=$(dirname $output)
 
-#time singularity exec -e docker://brainlife/dipy:0.14.2 ./neuropythy/commands/benson14_retinotopy
+time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.4 bash -c "python -m neuropythy benson14_retinotopy $(basename $output) -d $subj_dir && for i in $output/mri/*benson14*; do mri_convert \$i \${i%.*}.nii.gz; done"
 
-#mkdir -p /usr/local/freesurfer/subjects
-cp -R "$output" "$SUBJECTS_DIR"
-#cp -R "$output" /N/u/davhunt/Carbonate/Downloads/freesurfer/subjects
-
-#time singularity exec --writable -e docker://brainlife/freesurfer:6.0.0 bash -c "echo $FREESURFER_LICENSE > /usr/local/freesurfer/license.txt && python ./neuropythy/commands/benson14_retinotopy.py output"
-
-#time singularity exec -e docker://nben/neuropythy bash -c "echo $FREESURFER_LICENSE > /usr/local/freesurfer/license.txt && python ./neuropythy/commands/benson14_retinotopy.py output"
-
-#time singularity exec -e docker://nben/neuropythy bash -c "python ./neuropythy/commands/benson14_retinotopy.py output"
-
-#time singularity exec -e docker://davhunt/neuropythy:1.0 bash -c "python ./neuropythy/commands/benson14_retinotopy.py output"
-
-time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.2 bash -c "python ./neuropythy/commands/benson14_retinotopy.py output"
-
-cd ../..
-mkdir pRF_output
-cp $SUBJECTS_DIR/output/surf/*benson14* pRF_output && cp $SUBJECTS_DIR/output/mri/*benson14* pRF_output
+mkdir prf
+cp $output/surf/*benson14* prf && cp $output/mri/*benson14* prf
+mv prf/benson14_eccen.nii.gz prf/eccentricity.nii.gz && mv prf/benson14_sigma.nii.gz prf/rfWidth.nii.gz && \
+mv prf/benson14_angle.nii.gz prf/polarAngle.nii.gz && mv prf/benson14_varea.nii.gz prf/varea.nii.gz
