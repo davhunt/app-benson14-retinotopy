@@ -18,7 +18,7 @@ def create_R2(in_img):
           data[i,j,k] = 1.0
   
   img_out = nib.Nifti1Image(data, img.affine)
-  nib.save(img_out, os.path.join(os.getcwd(),'prf','R2.nii.gz'))
+  nib.save(img_out, os.path.join(os.getcwd(),'prf','r2.nii.gz'))
 
 if __name__ == '__main__':
   create_R2(sys.argv[1])
