@@ -34,6 +34,7 @@ echo "running create_R2"
 ./create_R2.py ./varea/parc.nii.gz
 
 echo "creating vtks"
+mkdir -p prf/surfaces
 mris_convert --to-scanner $fsdir/surf/lh.white prf/surfaces/lh.white.vtk
 mris_convert --to-scanner $fsdir/surf/rh.white prf/surfaces/rh.white.vtk
 mris_convert --to-scanner $fsdir/surf/lh.pial prf/surfaces/lh.pial.vtk
