@@ -17,5 +17,5 @@ RUN pip install --upgrade numpy
 RUN pip install --upgrade scipy
 RUN pip install --upgrade six
 RUN pip install --upgrade pimms
-RUN pip install neuropythy
+RUN pip install --upgrade neuropythy
 

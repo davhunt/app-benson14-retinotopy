@@ -22,7 +22,7 @@ mkdir prf && mkdir varea
 
 mv $output/surf/*benson14* prf && mv $output/mri/*benson14* prf
 mv prf/benson14_eccen.nii.gz prf/eccentricity.nii.gz && mv prf/benson14_sigma.nii.gz prf/rfWidth.nii.gz && \
-mv prf/benson14_angle.nii.gz prf/polarAngle.nii.gz && mv prf/benson14_varea.nii.gz varea/parc.nii.gz
+mv prf/benson14_angle.nii.gz prf/polarAngle.nii.gz && mv prf/benson14_varea.nii.gz prf/varea.nii.gz && cp prf/varea.nii.gz varea/parc.nii.gz
 
 ./create_R2.py ./varea/parc.nii.gz
 # this will create a binary mask R2 of 1's and 0's
