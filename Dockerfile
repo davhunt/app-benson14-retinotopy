@@ -13,6 +13,7 @@ RUN apt-get update
 #RUN apt-get remove python3-scipy
 
 RUN apt-get -y install python-pip
+RUN pip install --upgrade pip
 RUN pip install --upgrade numpy
 RUN pip install --upgrade scipy
 RUN pip install --upgrade six
