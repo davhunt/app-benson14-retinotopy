@@ -1,29 +1,13 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=4,vmem=30gb,walltime=4:00:00
+#PBS -l nodes=1:ppn=4,vmem=29gb,walltime=4:00:00
 #PBS -N pRF
-#PBS -V
 
 set -e
 set -x
 
-output=$(jq -r .freesurfer config.json)
+fsdir=$(jq -r .freesurfer config.json)
+
 [ -z "$FREESURFER_LICENSE" ] && echo "Please set FREESURFER_LICENSE in .bashrc" && exit 1;
 echo $FREESURFER_LICENSE > license.txt
+time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://brainlife/neuropythy:1.5 ./run.sh $fsdir
 
-#cp -R "$output" "$SUBJECTS_DIR"
-#subj_dir=$SUBJECTS_DIR
-subj_dir=$(dirname $output)
-
-rm -f $output/surf/*benson14*
-
-time singularity exec -e -B `pwd`/license.txt:/usr/local/freesurfer/license.txt docker://davhunt/neuropythy:1.4 bash -c "python -m neuropythy benson14_retinotopy $(basename $output) -d $subj_dir && for i in $output/mri/*benson14*; do mri_convert \$i \${i%.*}.nii.gz; done"
-
-mkdir prf && mkdir varea
-
-mv $output/surf/*benson14* prf && mv $output/mri/*benson14* prf
-mv prf/benson14_eccen.nii.gz prf/eccentricity.nii.gz && mv prf/benson14_sigma.nii.gz prf/rfWidth.nii.gz && \
-mv prf/benson14_angle.nii.gz prf/polarAngle.nii.gz && mv prf/benson14_varea.nii.gz prf/varea.nii.gz && cp prf/varea.nii.gz varea/parc.nii.gz
-
-./create_R2.py ./varea/parc.nii.gz
-# this will create a binary mask R2 of 1's and 0's
-# based on whether a voxel is assigned a visual area or not
