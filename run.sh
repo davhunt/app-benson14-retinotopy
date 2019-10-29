@@ -8,6 +8,10 @@ set -e
 echo "copying input freesurfer to here because benson14_retinotopy writes output to freesurfer dir"
 cp -r $fsdir copy
 
+echo "delete any old retinotopy"
+rm -rf copy/mri/*benson14*
+rm -rf copy/surf/*benson14*
+
 echo "running benson14_retinotopy"
 time python -m neuropythy benson14_retinotopy copy -d .
 
