@@ -22,7 +22,7 @@ do
 done
 
 echo "organizing output"
-mkdir -p prf varea
+mkdir -p prf varea benson14_surfaces
 mv copy/surf/*benson14* benson14_surfaces/ 
 mv copy/mri/*benson14* prf
 
