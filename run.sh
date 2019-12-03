@@ -24,7 +24,7 @@ done
 echo "organizing output"
 mkdir -p prf varea prf/benson14_surfaces varea_surf
 mv copy/surf/*benson14* prf/benson14_surfaces/ 
-mv copy/mri/*benson14* prf
+mv copy/mri/*benson14*.nii.gz prf
 
 mv prf/benson14_eccen.nii.gz prf/eccentricity.nii.gz 
 mv prf/benson14_sigma.nii.gz prf/rfWidth.nii.gz 
