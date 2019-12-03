@@ -12,6 +12,9 @@ echo "delete any old retinotopy"
 rm -rf copy/mri/*benson14*
 rm -rf copy/surf/*benson14*
 
+python -c 'import sys; sys.path.remove("/gpfs/hps/soft/rhel7/python/2.7.13a/lib/python2.7/site-packages/numpy-1.13.0.dev0+9c3d247-py2.7-linux-x86_64.egg"; \
+sys.path.remove("/gpfs/hps/soft/rhel7/python/2.7.13a/lib/python2.7/site-packages/scipy-1.0.0.dev0+2b7ce39-py2.7-linux-x86_64.egg")'
+
 echo "running benson14_retinotopy"
 time python -m neuropythy benson14_retinotopy copy -d .
 
