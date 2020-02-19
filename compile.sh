@@ -23,4 +23,4 @@ addpath(genpath('/N/u/davhunt/Carbonate/Downloads/gifti-1.8'))
 mcc -m -R -nodisplay -a /N/u/brlife/git/vistasoft/mrDiffusion/templates -d compiled main
 exit
 END
-matlab -nodisplay -nosplash -r build
+matlab -nodisplay -nosplash -r build && rm build.m
