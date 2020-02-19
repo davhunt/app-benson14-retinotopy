@@ -24,13 +24,13 @@ def create_R2(in_vol, in_rh_surf, in_lh_surf):
   for i in range(data.shape[0]):
     if data[i] > 0.0:
       data[i] = 1.0
-  fsio.write_morph_data(os.path.join(os.getcwd(),'prf','benson14_surfaces','rh.r2'),data)
+  fsio.write_morph_data(os.path.join(os.getcwd(),'prf','prf_surfaces','rh.r2'),data)
 
   data = fsio.read_morph_data(in_lh_surf)
   for i in range(data.shape[0]):
     if data[i] > 0.0:
       data[i] = 1.0
-  fsio.write_morph_data(os.path.join(os.getcwd(),'prf','benson14_surfaces','lh.r2'),data)
+  fsio.write_morph_data(os.path.join(os.getcwd(),'prf','prf_surfaces','lh.r2'),data)
 
 
 if __name__ == '__main__':
