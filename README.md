@@ -57,7 +57,20 @@ bl dataset download 598a2aa44258600aa3128fd4 && mv -R 598a2aa44258600aa3128fd4 i
 
 All output files will be generated under the current working directory (pwd). The main output of this App is the directory `prf`, which contains the population receptive field measures polarAngle, eccentricity, rfWidth, and varea in the brain volume (*.nii.gz) as well as on the cortical surface (lh.polarAngle, etc) in freesurfer .curv format.
 
+#Project tree
 
+.
+ * [tree-md](./tree-md)
+ * [dir2](./dir2)
+   * [file21.ext](./dir2/file21.ext)
+   * [file22.ext](./dir2/file22.ext)
+   * [file23.ext](./dir2/file23.ext)
+ * [dir1](./dir1)
+   * [file11.ext](./dir1/file11.ext)
+   * [file12.ext](./dir1/file12.ext)
+ * [file_in_root.ext](./file_in_root.ext)
+ * [README.md](./README.md)
+ * [dir3](./dir3)
 
 ```
  * [tree-md](./tree-md)
