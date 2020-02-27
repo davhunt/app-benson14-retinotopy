@@ -4,7 +4,7 @@
 
 This app performs a retinotopic mapping in visual areas V1, V2, and V3, as well as higher-order visual areas, from an anatomical (T1-weighted MRI) image, using the neuropythy python library by Noah Benson (github.com/noahbenson/neuropythy).
 
-An anatomically-defined template is fit to the subject's T1 anatomy, while correcting for distortions caused by cortical folding, to provide retinotopic maps in V1, V2, and V3, as well as mapping further visual areas included in key.txt. The measures are outputted in the brain volume (.nii.gz) as well as on the cortical surface (freesurfer .curv format as well as .gii.gz format).
+An group-derived, anatomically-defined template is fit to the subject's T1 anatomy, while correcting for distortions caused by cortical folding, to provide retinotopic maps in V1, V2, and V3, as well as mapping further visual areas included in key.txt. The measures are outputted in the brain volume (.nii.gz) as well as on the cortical surface (freesurfer .curv format as well as .gii.gz format).
 
 pRF measures include:
   polar angle: the location of the receptive field in polar coordinates (from the upper vertical meridian at 0° to the lower vertical meridian at 90°)
@@ -96,4 +96,5 @@ This App only requires [singularity](https://www.sylabs.io/singularity/) to run.
 ### References
 
 [Benson et al, 2012. The retinotopic organization of striate cortex is well predicted by surface topology](https://doi.org/10.1016/j.cub.2012.09.014)
+
 [Benson et al, 2014. Correction of distortion in flattened representations of the cortical surface allows prediction of V1-V3 functional organization from anatomy](10.1371/journal.pcbi.1003538)
