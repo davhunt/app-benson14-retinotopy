@@ -7,7 +7,7 @@ This app performs a retinotopic mapping in visual areas V1, V2, and V3, as well 
 An group-derived, anatomically-defined template is fit to the subject's T1 anatomy, while correcting for distortions caused by cortical folding, to provide retinotopic maps in V1, V2, and V3, as well as mapping further visual areas included in key.txt. The measures are outputted in the brain volume (.nii.gz) as well as on the cortical surface (freesurfer .curv format as well as .gii.gz format).
 
 pRF measures include:
-  polar angle: the location of the receptive field in polar coordinates (from the upper vertical meridian at 0° to the lower vertical meridian at 90°)
+  polar angle: the location of the receptive field in polar coordinates (from the upper vertical meridian at 0° to the lower vertical meridian at 180°)
   eccentricity: the deviation of the center of the receptive field from the fovea (in degrees)
   receptive field width: the size of the voxel's receptive field (the standard deviation of the receptive field's 2d isotropic Gaussian)
   visual area: the voxel's predicted visual area (1-12, key found in ./varea/key.txt)
