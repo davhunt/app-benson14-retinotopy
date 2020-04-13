@@ -7,6 +7,7 @@ set -e
 
 echo "copying input freesurfer to here because benson14_retinotopy writes output to freesurfer dir"
 cp -r $fsdir copy
+chmod -R +w copy
 
 echo "delete any old retinotopy"
 rm -rf copy/mri/*benson14*
