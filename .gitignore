@@ -1,8 +1,7 @@
 license.txt
 config.json
 testdata
-barn
-copy
+fs_copy
 prf
-varea/parc.nii.gz
-varea_surf/?h.parc.annot.gii
+varea
+varea_surf
